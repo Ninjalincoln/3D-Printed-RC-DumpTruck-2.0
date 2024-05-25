@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 
+#include <Servo.h>
 #include <ESP32Servo.h> // by Kevin Harrington
 #include <ESPAsyncWebSrv.h> // by dvarrel
 #include <iostream>
@@ -16,10 +17,9 @@
 
 // defines
 
-#define steeringServoPin  23
-#define dumpServoPin 22
-#define lightPin1 26
-#define lightPin2 25
+#define steeringServoPin  2
+#define dumpServoPin 0
+#define lightPin1 5
 
 #define UP 1
 #define DOWN 2
@@ -96,19 +96,19 @@ void throttleControl(int throttleValue)
 {
   if (throttleValue > 20)
   {
-    analogWrite(32, throttleValue);
-    analogWrite(33, LOW);
+    analogWrite(13, throttleValue);
+    analogWrite(15, LOW);
   }
   else if (throttleValue < -20)
   {
     throttleValue = throttleValue * -1;
-    analogWrite(33, throttleValue);
-    analogWrite(32, LOW);
+    analogWrite(13, throttleValue);
+    analogWrite(15, LOW);
   }
   else
   {
-    analogWrite(33, LOW);
-    analogWrite(32, LOW);
+    analogWrite(13, LOW);
+    analogWrite(15, LOW);
   }
 }
 void auxControl(int auxValue)
